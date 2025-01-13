@@ -1,0 +1,64 @@
+version: "3.9"
+services:
+  mysql8users:
+    container_name: mysql8users
+    image: mysql:8.0.36
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin1234 
+      MYSQL_DATABASE: msvc_usuarios
+    volumes:
+      - data-mysql_users:/var/lib/mysql
+    restart: always
+    networks:
+      - spring
+
+  mysql8:
+    container_name: mysql8
+    image: mysql:8.0.36
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin1234 
+      MYSQL_DATABASE: msvc_cursos
+    volumes:
+      - data-mysql_cursos:/var/lib/mysql
+    restart: always
+    networks:
+      - spring
+
+  msvc-usuarios:
+    container_name: msvc-usuarios
+    image: usuarios:latest
+    ports:
+      - "8001:8001"
+    env_file: .\msvs-usuarios\.env 
+    networks:
+      - spring
+    depends_on:
+      - mysql8users
+    restart: always
+
+  msvc-cursos:
+    container_name: msvc-cursos
+    image: cursos:latest
+    ports:
+      - "8002:8002"
+    env_file:
+      - .\msvc-cursos\.env
+    networks:
+      - spring
+    depends_on:
+      - mysql8 
+    restart: always
+
+
+volumes:
+  data-mysql_users:
+    name: data-mysql_users
+  data-mysql_cursos:
+    name: data-mysql_cursos
+networks:
+  spring:
+    name: spring
