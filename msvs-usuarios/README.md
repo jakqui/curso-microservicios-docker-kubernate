@@ -22,5 +22,8 @@ docker run -d -p 3307:3306 --name mysql8 --network spring -e MYSQL_ROOT_PASSWORD
 # ** Docker compose**
 docker compose up -d
 docker compose down
+docker compose up --build -d    FORZAR CONSTRUIR LAS IMAGENES, POR SI HACEMOS CAMBIOS
+docker-compose --help           AYUDA
+docker-compose build            FORZAR RECONSTRUIR IMAGENES, PERO NO LEVANTA CONTENEDORES
 
 # ** END POINTS**

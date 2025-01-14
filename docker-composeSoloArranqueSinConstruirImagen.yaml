@@ -30,10 +30,7 @@ services:
 
   msvc-usuarios:
     container_name: msvc-usuarios
-    image: jakquelineherrera/repo-usuarios:latest
-    # build:
-    #   context: .\
-    #   dockerfile: .\msvs-usuarios\Dockerfile
+    image: usuarios:latest
     ports:
       - "8001:8001"
     env_file: .\msvs-usuarios\.env 
@@ -45,10 +42,7 @@ services:
 
   msvc-cursos:
     container_name: msvc-cursos
-    image: jakquelineherrera/cursos:latest
-    # build:
-    #   context: .\
-    #   dockerfile: .\msvc-cursos\Dockerfile
+    image: cursos:latest
     ports:
       - "8002:8002"
     env_file:
