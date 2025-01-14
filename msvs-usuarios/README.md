@@ -22,3 +22,5 @@ docker run -d -p 3307:3306 --name mysql8 --network spring -e MYSQL_ROOT_PASSWORD
 # ** Docker compose**
 docker compose up -d
 docker compose down
+
+# ** END POINTS**
